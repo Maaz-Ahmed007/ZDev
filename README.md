@@ -8,16 +8,16 @@
 
   <!-- Badges -->
   <p>
-    <a href="https://github.com/yourusername/zdev/stargazers">
+    <a href="https://github.com/Maaz-Ahmed007/ZDev/stargazers">
       <img src="https://img.shields.io/github/stars/yourusername/zdev?style=for-the-badge&logo=github&color=A078F5&logoColor=white" alt="Stars" />
     </a>
-    <a href="https://github.com/yourusername/zdev/network/members">
+    <a href="https://github.com/Maaz-Ahmed007/ZDev/network/members">
       <img src="https://img.shields.io/github/forks/yourusername/zdev?style=for-the-badge&logo=github&color=4895EF&logoColor=white" alt="Forks" />
     </a>
-    <a href="https://github.com/yourusername/zdev/blob/main/LICENSE">
+    <a href="https://github.com/Maaz-Ahmed007/ZDev/blob/main/LICENSE">
       <img src="https://img.shields.io/github/license/yourusername/zdev?style=for-the-badge&color=A078F5" alt="License" />
     </a>
-    <a href="https://zdev.vercel.app">
+    <a href="https://zdevnow.vercel.app/">
       <img src="https://img.shields.io/badge/DEMO-LIVE-4895EF?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
     </a>
   </p>
