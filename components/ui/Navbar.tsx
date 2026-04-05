@@ -705,10 +705,10 @@ const Navbar: React.FC = () => {
 						? '1px solid rgba(255,255,255,0.04)'
 						: '1px solid transparent',
 					backdropFilter: scrolled
-						? 'blur(20px) saturate(1.2)'
+						? 'blur(12px)'
 						: 'none',
 					WebkitBackdropFilter: scrolled
-						? 'blur(20px) saturate(1.2)'
+						? 'blur(12px)'
 						: 'none',
 				}}
 			>

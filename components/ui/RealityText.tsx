@@ -23,7 +23,6 @@ const RealityText: React.FC<Props> = React.memo(({ isLoaded = true, className = 
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: 'reality-flow 6s ease-in-out infinite',
             }}
         >
             Reality
@@ -41,7 +40,6 @@ const RealityText: React.FC<Props> = React.memo(({ isLoaded = true, className = 
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: 'reality-flow 6s ease-in-out infinite',
             }}
         >
             Reality
