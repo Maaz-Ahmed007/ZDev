@@ -1,6 +1,3 @@
-// components/landing/hero/HeroKeyframes.tsx
-// Pure string export — injected once, no re-render impact
-
 export const HERO_KEYFRAMES = `
   /* Orbs — transform only, compositor thread */
   @keyframes orb-left {

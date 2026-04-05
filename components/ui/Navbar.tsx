@@ -4,20 +4,20 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-    HiArrowLongRight,
-    HiXMark,
-    HiOutlineUser,
-    HiOutlineArrowRightOnRectangle,
+	HiArrowLongRight,
+	HiXMark,
+	HiOutlineUser,
+	HiOutlineArrowRightOnRectangle,
 } from 'react-icons/hi2';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { FiChevronRight } from 'react-icons/fi';
 import Logo from '@/components/ui/Logo';
 import { SocialIconRow } from '@/components/ui/SocialIcon';
 import {
-    cn,
-    gradients,
-    getRelativeMousePos,
-    cursorSpotlight,
+	cn,
+	gradients,
+	getRelativeMousePos,
+	cursorSpotlight,
 } from '@/lib/utils';
 
 // ═══════════════════════════════════════════════════════════════
@@ -435,16 +435,14 @@ const NAVBAR_STYLES = `
 // ═══════════════════════════════════════════════════════════════
 
 interface NavLink {
-    name: string;
-    href: string;
-    isPage?: boolean;
+	name: string;
+	href: string;
+	isPage?: boolean;
 }
 
 const NAV_ITEMS: NavLink[] = [
-    { name: 'Work', href: '#work' },
-    { name: 'Services', href: '#services' },
-    { name: 'Store', href: '/store', isPage: true },
-    { name: 'Progress', href: '/progress', isPage: true },
+	{ name: 'Store', href: '/store', isPage: true },
+	{ name: 'Work', href: '/work', isPage: true },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -452,179 +450,179 @@ const NAV_ITEMS: NavLink[] = [
 // ═══════════════════════════════════════════════════════════════
 
 const MobileMenu: React.FC<{
-    isOpen: boolean;
-    onClose: () => void;
-    pathname: string;
+	isOpen: boolean;
+	onClose: () => void;
+	pathname: string;
 }> = ({ isOpen, onClose, pathname }) => {
-    const [closing, setClosing] = useState(false);
+	const [closing, setClosing] = useState(false);
 
-    const handleClose = useCallback(() => {
-        setClosing(true);
-        setTimeout(() => {
-            setClosing(false);
-            onClose();
-        }, 280);
-    }, [onClose]);
+	const handleClose = useCallback(() => {
+		setClosing(true);
+		setTimeout(() => {
+			setClosing(false);
+			onClose();
+		}, 280);
+	}, [onClose]);
 
-    useEffect(() => {
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [isOpen]);
+	useEffect(() => {
+		document.body.style.overflow = isOpen ? 'hidden' : '';
+		return () => {
+			document.body.style.overflow = '';
+		};
+	}, [isOpen]);
 
-    if (!isOpen && !closing) return null;
+	if (!isOpen && !closing) return null;
 
-    return (
-        <div className="md:hidden">
-            {/* Overlay */}
-            <div
-                className="mobile-overlay"
-                onClick={handleClose}
-                style={{
-                    animation: closing
-                        ? 'mobile-overlay-in 0.25s ease reverse forwards'
-                        : 'mobile-overlay-in 0.3s ease forwards',
-                }}
-            />
+	return (
+		<div className="md:hidden">
+			{/* Overlay */}
+			<div
+				className="mobile-overlay"
+				onClick={handleClose}
+				style={{
+					animation: closing
+						? 'mobile-overlay-in 0.25s ease reverse forwards'
+						: 'mobile-overlay-in 0.3s ease forwards',
+				}}
+			/>
 
-            {/* Panel */}
-            <div
-                className="mobile-panel"
-                style={{
-                    animation: closing
-                        ? 'mobile-panel-out 0.28s cubic-bezier(0.4,0,1,1) forwards'
-                        : 'mobile-panel-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards',
-                }}
-            >
-                <div className="mobile-panel-glow" />
+			{/* Panel */}
+			<div
+				className="mobile-panel"
+				style={{
+					animation: closing
+						? 'mobile-panel-out 0.28s cubic-bezier(0.4,0,1,1) forwards'
+						: 'mobile-panel-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards',
+				}}
+			>
+				<div className="mobile-panel-glow" />
 
-                {/* Header */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
-                    <Logo size="sm" />
-                    <button
-                        onClick={handleClose}
-                        className="w-9 h-9 flex items-center justify-center rounded-lg
+				{/* Header */}
+				<div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
+					<Logo size="sm" />
+					<button
+						onClick={handleClose}
+						className="w-9 h-9 flex items-center justify-center rounded-lg
                      border border-white/10 hover:border-white/20 hover:bg-white/5
                      transition-all duration-300"
-                        aria-label="Close menu"
-                    >
-                        <HiXMark className="w-5 h-5 text-gray-400" />
-                    </button>
-                </div>
+						aria-label="Close menu"
+					>
+						<HiXMark className="w-5 h-5 text-gray-400" />
+					</button>
+				</div>
 
-                {/* Links */}
-                <nav className="px-5 py-5">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-3 px-1">
-                        Navigation
-                    </p>
-                    <div className="space-y-1">
-                        {NAV_ITEMS.map((link, i) => {
-                            const isActive = link.isPage
-                                ? pathname === link.href
-                                : false;
-                            const El = link.isPage ? Link : 'a';
+				{/* Links */}
+				<nav className="px-5 py-5">
+					<p className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-3 px-1">
+						Navigation
+					</p>
+					<div className="space-y-1">
+						{NAV_ITEMS.map((link, i) => {
+							const isActive = link.isPage
+								? pathname === link.href
+								: false;
+							const El = link.isPage ? Link : 'a';
 
-                            return (
-                                <El
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={handleClose}
-                                    className={cn(
-                                        'mobile-link',
-                                        isActive && 'active',
-                                    )}
-                                    style={{
-                                        animation: `mobile-item-in 0.35s ease-out ${120 + i * 50}ms both`,
-                                    }}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <div className="mobile-link-bar" />
-                                        <span className="mobile-link-name">
-                                            {link.name}
-                                        </span>
-                                        {link.isPage && (
-                                            <span
-                                                className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
-                                                style={{
-                                                    background:
-                                                        'rgba(160,120,245,0.1)',
-                                                    color: 'var(--brand-violet)',
-                                                    border: '1px solid rgba(160,120,245,0.15)',
-                                                }}
-                                            >
-                                                Page
-                                            </span>
-                                        )}
-                                    </div>
-                                    <FiChevronRight className="mobile-link-chevron w-4 h-4" />
-                                </El>
-                            );
-                        })}
-                    </div>
-                </nav>
+							return (
+								<El
+									key={link.name}
+									href={link.href}
+									onClick={handleClose}
+									className={cn(
+										'mobile-link',
+										isActive && 'active',
+									)}
+									style={{
+										animation: `mobile-item-in 0.35s ease-out ${120 + i * 50}ms both`,
+									}}
+								>
+									<div className="flex items-center gap-3">
+										<div className="mobile-link-bar" />
+										<span className="mobile-link-name">
+											{link.name}
+										</span>
+										{link.isPage && (
+											<span
+												className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
+												style={{
+													background:
+														'rgba(160,120,245,0.1)',
+													color: 'var(--brand-violet)',
+													border: '1px solid rgba(160,120,245,0.15)',
+												}}
+											>
+												Page
+											</span>
+										)}
+									</div>
+									<FiChevronRight className="mobile-link-chevron w-4 h-4" />
+								</El>
+							);
+						})}
+					</div>
+				</nav>
 
-                {/* Auth */}
-                <div className="px-5 py-4 border-t border-white/5">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-3 px-1">
-                        Account
-                    </p>
-                    <div
-                        className="space-y-2"
-                        style={{
-                            animation:
-                                'mobile-item-in 0.35s ease-out 400ms both',
-                        }}
-                    >
-                        <Link
-                            href="/login"
-                            onClick={handleClose}
-                            className="nav-auth-login w-full justify-center"
-                        >
-                            <HiOutlineArrowRightOnRectangle className="w-5 h-5" />
-                            <span>Log In</span>
-                        </Link>
-                        <Link
-                            href="/signup"
-                            onClick={handleClose}
-                            className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl
+				{/* Auth */}
+				<div className="px-5 py-4 border-t border-white/5">
+					<p className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-3 px-1">
+						Account
+					</p>
+					<div
+						className="space-y-2"
+						style={{
+							animation:
+								'mobile-item-in 0.35s ease-out 400ms both',
+						}}
+					>
+						<Link
+							href="/login"
+							onClick={handleClose}
+							className="nav-auth-login w-full justify-center"
+						>
+							<HiOutlineArrowRightOnRectangle className="w-5 h-5" />
+							<span>Log In</span>
+						</Link>
+						<Link
+							href="/signup"
+							onClick={handleClose}
+							className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl
                        font-semibold text-sm text-white"
-                            style={{
-                                background: gradients.brand,
-                                backgroundSize: '200% 200%',
-                            }}
-                        >
-                            <HiOutlineUser className="w-4 h-4" />
-                            Create Account
-                        </Link>
-                    </div>
-                </div>
+							style={{
+								background: gradients.brand,
+								backgroundSize: '200% 200%',
+							}}
+						>
+							<HiOutlineUser className="w-4 h-4" />
+							Create Account
+						</Link>
+					</div>
+				</div>
 
-                {/* Bottom */}
-                <div
-                    className="absolute bottom-0 left-0 right-0 px-5 py-4 border-t border-white/5"
-                    style={{
-                        animation: 'mobile-item-in 0.35s ease-out 500ms both',
-                    }}
-                >
-                    <Link
-                        href="/lets-talk"
-                        onClick={handleClose}
-                        className="nav-cta w-full justify-center mb-4"
-                    >
-                        <div className="nav-cta-border" />
-                        <div className="nav-cta-fill" />
-                        <RiSendPlaneFill className="nav-cta-icon w-3.5 h-3.5" />
-                        <span className="nav-cta-label">Let&apos;s Talk</span>
-                        <HiArrowLongRight className="nav-cta-arrow w-4 h-4" />
-                    </Link>
-                    <div className="flex justify-center">
-                        <SocialIconRow size="sm" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+				{/* Bottom */}
+				<div
+					className="absolute bottom-0 left-0 right-0 px-5 py-4 border-t border-white/5"
+					style={{
+						animation: 'mobile-item-in 0.35s ease-out 500ms both',
+					}}
+				>
+					<Link
+						href="/lets-talk"
+						onClick={handleClose}
+						className="nav-cta w-full justify-center mb-4"
+					>
+						<div className="nav-cta-border" />
+						<div className="nav-cta-fill" />
+						<RiSendPlaneFill className="nav-cta-icon w-3.5 h-3.5" />
+						<span className="nav-cta-label">Let&apos;s Talk</span>
+						<HiArrowLongRight className="nav-cta-arrow w-4 h-4" />
+					</Link>
+					<div className="flex justify-center">
+						<SocialIconRow size="sm" />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -632,209 +630,209 @@ const MobileMenu: React.FC<{
 // ═══════════════════════════════════════════════════════════════
 
 const NavStyles = React.memo(() => (
-    <style dangerouslySetInnerHTML={{ __html: NAVBAR_STYLES }} />
+	<style dangerouslySetInnerHTML={{ __html: NAVBAR_STYLES }} />
 ));
 
 const Navbar: React.FC = () => {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const pathname = usePathname();
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+	const pathname = usePathname();
 
-    // CTA spotlight
-    const ctaRef = useRef<HTMLAnchorElement>(null);
-    const spotlightRef = useRef<HTMLDivElement>(null);
+	// CTA spotlight
+	const ctaRef = useRef<HTMLAnchorElement>(null);
+	const spotlightRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        requestAnimationFrame(() =>
-            requestAnimationFrame(() => setIsLoaded(true)),
-        );
-    }, []);
+	useEffect(() => {
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => setIsLoaded(true)),
+		);
+	}, []);
 
-    useEffect(() => {
-        let ticking = false;
-        const onScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    setScrolled(window.scrollY > 20);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+	useEffect(() => {
+		let ticking = false;
+		const onScroll = () => {
+			if (!ticking) {
+				requestAnimationFrame(() => {
+					setScrolled(window.scrollY > 20);
+					ticking = false;
+				});
+				ticking = true;
+			}
+		};
+		window.addEventListener('scroll', onScroll, { passive: true });
+		return () => window.removeEventListener('scroll', onScroll);
+	}, []);
 
-    const handleCtaMove = useCallback(
-        (e: React.MouseEvent<HTMLAnchorElement>) => {
-            if (!ctaRef.current || !spotlightRef.current) return;
-            const pos = getRelativeMousePos(e, ctaRef.current);
-            spotlightRef.current.style.background = cursorSpotlight(
-                pos.x,
-                pos.y,
-                80,
-                'rgba(160,120,245,0.12)',
-            );
-        },
-        [],
-    );
+	const handleCtaMove = useCallback(
+		(e: React.MouseEvent<HTMLAnchorElement>) => {
+			if (!ctaRef.current || !spotlightRef.current) return;
+			const pos = getRelativeMousePos(e, ctaRef.current);
+			spotlightRef.current.style.background = cursorSpotlight(
+				pos.x,
+				pos.y,
+				80,
+				'rgba(160,120,245,0.12)',
+			);
+		},
+		[],
+	);
 
-    const handleCtaMouseEnter = useCallback(() => {
-        if (spotlightRef.current) spotlightRef.current.style.opacity = '1';
-    }, []);
+	const handleCtaMouseEnter = useCallback(() => {
+		if (spotlightRef.current) spotlightRef.current.style.opacity = '1';
+	}, []);
 
-    const handleCtaMouseLeave = useCallback(() => {
-        if (spotlightRef.current) spotlightRef.current.style.opacity = '0';
-    }, []);
+	const handleCtaMouseLeave = useCallback(() => {
+		if (spotlightRef.current) spotlightRef.current.style.opacity = '0';
+	}, []);
 
-    return (
-        <>
-            <NavStyles />
+	return (
+		<>
+			<NavStyles />
 
-            <nav
-                className={cn(
-                    'nav-root px-4 sm:px-6 lg:px-16',
-                    isLoaded ? 'nav-visible' : 'nav-hidden',
-                    scrolled && 'nav-scrolled',
-                )}
-                style={{
-                    padding: scrolled ? '0.65rem 1rem' : '1.1rem 1rem',
-                    backgroundColor: scrolled
-                        ? 'rgba(7,7,10,0.88)'
-                        : 'transparent',
-                    borderBottom: scrolled
-                        ? '1px solid rgba(255,255,255,0.04)'
-                        : '1px solid transparent',
-                    backdropFilter: scrolled
-                        ? 'blur(20px) saturate(1.2)'
-                        : 'none',
-                    WebkitBackdropFilter: scrolled
-                        ? 'blur(20px) saturate(1.2)'
-                        : 'none',
-                }}
-            >
-                <div className="nav-glow-line" />
+			<nav
+				className={cn(
+					'nav-root px-4 sm:px-6 lg:px-16',
+					isLoaded ? 'nav-visible' : 'nav-hidden',
+					scrolled && 'nav-scrolled',
+				)}
+				style={{
+					padding: scrolled ? '0.65rem 1rem' : '1.1rem 1rem',
+					backgroundColor: scrolled
+						? 'rgba(7,7,10,0.88)'
+						: 'transparent',
+					borderBottom: scrolled
+						? '1px solid rgba(255,255,255,0.04)'
+						: '1px solid transparent',
+					backdropFilter: scrolled
+						? 'blur(20px) saturate(1.2)'
+						: 'none',
+					WebkitBackdropFilter: scrolled
+						? 'blur(20px) saturate(1.2)'
+						: 'none',
+				}}
+			>
+				<div className="nav-glow-line" />
 
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
-                    {/* Logo */}
-                    <Logo size="md" />
+				<div className="max-w-7xl mx-auto flex items-center justify-between">
+					{/* Logo */}
+					<Logo size="md" />
 
-                    {/* Desktop Links */}
-                    <div className="hidden md:flex items-center gap-0.5">
-                        {NAV_ITEMS.map((link) => {
-                            const isActive = link.isPage
-                                ? pathname === link.href
-                                : false;
-                            const El = link.isPage ? Link : 'a';
+					{/* Desktop Links */}
+					<div className="hidden md:flex items-center gap-0.5">
+						{NAV_ITEMS.map((link) => {
+							const isActive = link.isPage
+								? pathname === link.href
+								: false;
+							const El = link.isPage ? Link : 'a';
 
-                            return (
-                                <El
-                                    key={link.name}
-                                    href={link.href}
-                                    className={cn(
-                                        'nav-link',
-                                        isActive && 'active',
-                                    )}
-                                >
-                                    <div className="nav-link-bg" />
-                                    <span className="nav-link-label">
-                                        {link.name}
-                                    </span>
-                                    <div className="nav-link-indicator" />
-                                    {link.isPage && (
-                                        <span className="nav-link-page-dot" />
-                                    )}
-                                </El>
-                            );
-                        })}
-                    </div>
+							return (
+								<El
+									key={link.name}
+									href={link.href}
+									className={cn(
+										'nav-link',
+										isActive && 'active',
+									)}
+								>
+									<div className="nav-link-bg" />
+									<span className="nav-link-label">
+										{link.name}
+									</span>
+									<div className="nav-link-indicator" />
+									{link.isPage && (
+										<span className="nav-link-page-dot" />
+									)}
+								</El>
+							);
+						})}
+					</div>
 
-                    {/* Desktop Right */}
-                    <div className="hidden md:flex items-center gap-2.5">
-                        {/* Auth */}
-                        <Link href="/login" className="nav-auth-login">
-                            <HiOutlineArrowRightOnRectangle className="w-4 h-4" />
-                            <span>Log In</span>
-                        </Link>
+					{/* Desktop Right */}
+					<div className="hidden md:flex items-center gap-2.5">
+						{/* Auth */}
+						<Link href="/login" className="nav-auth-login">
+							<HiOutlineArrowRightOnRectangle className="w-4 h-4" />
+							<span>Log In</span>
+						</Link>
 
-                        <Link href="/signup" className="nav-auth-signup">
-                            <HiOutlineUser className="w-3.5 h-3.5" />
-                            <span>Sign Up</span>
-                        </Link>
+						<Link href="/signup" className="nav-auth-signup">
+							<HiOutlineUser className="w-3.5 h-3.5" />
+							<span>Sign Up</span>
+						</Link>
 
-                        <div className="w-px h-4 bg-white/8 ml-1" />
+						<div className="w-px h-4 bg-white/8 ml-1" />
 
-                        {/* Let's Talk */}
-                        <Link
-                            ref={ctaRef}
-                            href="/lets-talk"
-                            className="nav-cta"
-                            onMouseMove={handleCtaMove}
-                            onMouseEnter={handleCtaMouseEnter}
-                            onMouseLeave={handleCtaMouseLeave}
-                        >
-                            <div className="nav-cta-border" />
-                            <div className="nav-cta-fill" />
+						{/* Let's Talk */}
+						<Link
+							ref={ctaRef}
+							href="/lets-talk"
+							className="nav-cta"
+							onMouseMove={handleCtaMove}
+							onMouseEnter={handleCtaMouseEnter}
+							onMouseLeave={handleCtaMouseLeave}
+						>
+							<div className="nav-cta-border" />
+							<div className="nav-cta-fill" />
 
-                            {/* Cursor spotlight */}
-                            <div
-                                ref={spotlightRef}
-                                className="absolute inset-0 rounded-full pointer-events-none"
-                                style={{
-                                    opacity: 0,
-                                    transition: 'opacity 0.3s ease',
-                                }}
-                            />
+							{/* Cursor spotlight */}
+							<div
+								ref={spotlightRef}
+								className="absolute inset-0 rounded-full pointer-events-none"
+								style={{
+									opacity: 0,
+									transition: 'opacity 0.3s ease',
+								}}
+							/>
 
-                            <RiSendPlaneFill className="nav-cta-icon w-3.5 h-3.5" />
-                            <span className="nav-cta-label">
-                                Let&apos;s Talk
-                            </span>
-                            <HiArrowLongRight className="nav-cta-arrow w-4 h-4" />
+							<RiSendPlaneFill className="nav-cta-icon w-3.5 h-3.5" />
+							<span className="nav-cta-label">
+								Let&apos;s Talk
+							</span>
+							<HiArrowLongRight className="nav-cta-arrow w-4 h-4" />
 
-                            {/* Status dot */}
-                            <span className="nav-status-dot">
-                                <span className="nav-status-ping" />
-                                <span className="nav-status-solid" />
-                            </span>
-                        </Link>
-                    </div>
+							{/* Status dot */}
+							<span className="nav-status-dot">
+								<span className="nav-status-ping" />
+								<span className="nav-status-solid" />
+							</span>
+						</Link>
+					</div>
 
-                    {/* Hamburger */}
-                    <button
-                        className="hamburger flex items-center justify-center md:hidden"
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        aria-label="Menu"
-                    >
-                        <div className="flex flex-col gap-[5px] items-center">
-                            <span
-                                className="hamburger-line"
-                                style={{ width: mobileOpen ? 20 : 20 }}
-                            />
-                            <span
-                                className="hamburger-line"
-                                style={{
-                                    width: mobileOpen ? 0 : 24,
-                                    opacity: mobileOpen ? 0 : 1,
-                                }}
-                            />
-                            <span
-                                className="hamburger-line"
-                                style={{ width: mobileOpen ? 20 : 16 }}
-                            />
-                        </div>
-                    </button>
-                </div>
-            </nav>
+					{/* Hamburger */}
+					<button
+						className="hamburger flex items-center justify-center md:hidden"
+						onClick={() => setMobileOpen(!mobileOpen)}
+						aria-label="Menu"
+					>
+						<div className="flex flex-col gap-[5px] items-center">
+							<span
+								className="hamburger-line"
+								style={{ width: mobileOpen ? 20 : 20 }}
+							/>
+							<span
+								className="hamburger-line"
+								style={{
+									width: mobileOpen ? 0 : 24,
+									opacity: mobileOpen ? 0 : 1,
+								}}
+							/>
+							<span
+								className="hamburger-line"
+								style={{ width: mobileOpen ? 20 : 16 }}
+							/>
+						</div>
+					</button>
+				</div>
+			</nav>
 
-            <MobileMenu
-                isOpen={mobileOpen}
-                onClose={() => setMobileOpen(false)}
-                pathname={pathname}
-            />
-        </>
-    );
+			<MobileMenu
+				isOpen={mobileOpen}
+				onClose={() => setMobileOpen(false)}
+				pathname={pathname}
+			/>
+		</>
+	);
 };
 
 export default Navbar;

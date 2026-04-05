@@ -1,4 +1,3 @@
-// components/landing/Hero.tsx  ← thin orchestrator
 'use client';
 
 import React, { useEffect, useState } from 'react';

@@ -1,4 +1,3 @@
-// components/landing/hero/DesktopHero.tsx
 'use client';
 
 import React from 'react';
