@@ -1,4 +1,3 @@
-// components/landing/hero/MobileHero.tsx
 'use client';
 
 import React from 'react';
@@ -305,14 +304,47 @@ const MobileHero: React.FC<Props> = React.memo(({ isLoaded }) => (
                 }}
             >
                 <div className="flex flex-col items-center -space-y-1 mb-1">
-                    <svg className="w-4 h-4 text-gray-400" style={{ animation: 'm-swipe-pulse 2s infinite' }} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                    <svg
+                        className="w-4 h-4 text-gray-400"
+                        style={{ animation: 'm-swipe-pulse 2s infinite' }}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                        />
                     </svg>
-                    <svg className="w-4 h-4 text-gray-500" style={{ animation: 'm-swipe-pulse 2s infinite 0.2s' }} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                    <svg
+                        className="w-4 h-4 text-gray-500"
+                        style={{ animation: 'm-swipe-pulse 2s infinite 0.2s' }}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                        />
                     </svg>
-                    <svg className="w-4 h-4 text-gray-600" style={{ animation: 'm-swipe-pulse 2s infinite 0.4s' }} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                    <svg
+                        className="w-4 h-4 text-gray-600"
+                        style={{ animation: 'm-swipe-pulse 2s infinite 0.4s' }}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                        />
                     </svg>
                 </div>
                 <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500 font-medium">
