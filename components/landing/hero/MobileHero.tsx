@@ -26,43 +26,40 @@ const MobileHero: React.FC<Props> = React.memo(({ isLoaded }) => (
         className="md:hidden relative overflow-hidden flex flex-col"
         style={{ minHeight: '100svh', backgroundColor: 'var(--bg-primary)' }}
     >
-        {/* ═══ BACKGROUND ═══ */}
+        {/* ═══ BACKGROUND — Dark Sun ═══ */}
         <div
             className="absolute inset-0 pointer-events-none"
             aria-hidden="true"
         >
-            {/* Animated gradient mesh */}
+            {/* Central dark sun glow */}
             <div
-                className="absolute inset-0"
+                className="absolute"
                 style={{
+                    top: '35%',
+                    left: '50%',
+                    width: '500px',
+                    height: '500px',
+                    marginLeft: '-250px',
+                    marginTop: '-250px',
                     background: `
-            radial-gradient(ellipse 85% 50% at 50% 10%, rgba(160,120,245,0.13) 0%, transparent 55%),
-            radial-gradient(ellipse 70% 60% at 20% 80%, rgba(72,149,239,0.10)  0%, transparent 50%),
-            radial-gradient(ellipse 55% 40% at 80% 60%, rgba(160,120,245,0.07) 0%, transparent 45%)
-          `,
-                    backgroundSize: '200% 200%',
-                    animation: 'm-bg-shift 18s ease-in-out infinite',
+                        radial-gradient(circle at center,
+                            rgba(160,120,245,0.25) 0%,
+                            rgba(130,105,230,0.15) 20%,
+                            rgba(72,149,239,0.08) 40%,
+                            transparent 70%)
+                    `,
+                    animation: 'sun-pulse 10s ease-in-out infinite',
+                    willChange: 'transform, opacity',
                 }}
             />
 
-            {/* Subtle grid — top center only */}
+            {/* Subtle grid — top only */}
             <div
-                className="absolute top-0 left-0 right-0 h-40 opacity-[0.04]"
+                className="absolute top-0 left-0 right-0 h-40 opacity-[0.03]"
                 style={{
                     backgroundImage:
-                        'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)',
+                        'linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)',
                     backgroundSize: '30px 30px',
-                    maskImage: 'linear-gradient(to bottom, black, transparent)',
-                    WebkitMaskImage:
-                        'linear-gradient(to bottom, black, transparent)',
-                }}
-            />
-
-            {/* Noise */}
-            <div
-                className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
-                style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
                 }}
             />
         </div>
@@ -103,11 +100,7 @@ const MobileHero: React.FC<Props> = React.memo(({ isLoaded }) => (
                 >
                     <div className="absolute inset-0 overflow-hidden">
                         <div
-                            className="absolute top-0 h-full w-8 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -skew-x-12"
-                            style={{
-                                animation:
-                                    'm-card-shine 5s ease-in-out infinite 3s',
-                            }}
+                            className="absolute top-0 -left-full h-full w-8 bg-linear-to-r from-transparent via-white/5 to-transparent -skew-x-12"
                         />
                     </div>
                     <div
@@ -145,6 +138,7 @@ const MobileHero: React.FC<Props> = React.memo(({ isLoaded }) => (
             {/* Diamond outline — mid left */}
             <div
                 className="absolute top-[48%] left-5"
+
                 style={{
                     animation: isLoaded
                         ? 'm-float 7s ease-in-out infinite 2s'
@@ -221,10 +215,7 @@ const MobileHero: React.FC<Props> = React.memo(({ isLoaded }) => (
                     overflow: 'visible',
                 }}
             >
-                <span
-                    className="block"
-                    style={{ animation: 'title-glow 6s ease-in-out infinite' }}
-                >
+                <span className="block">
                     Transform Ideas
                 </span>
                 <span

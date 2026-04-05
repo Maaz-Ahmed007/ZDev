@@ -7,8 +7,6 @@ import {
     GradientButton,
     OutlineButton,
     ScrollIndicator,
-    FloatingShapes,
-    HERO_SHAPES,
 } from '@/components/ui';
 import StatusBadge from '@/components/ui/StatusBadge';
 import { RealityText } from '@/components/ui';
@@ -17,147 +15,138 @@ interface Props {
     isLoaded: boolean;
 }
 
-/* Dot positions for grid intersection glows */
-const GRID_DOTS = [
-    {
-        top: '28%',
-        left: '22%',
-        size: 6,
-        color: 'rgba(160,120,245,0.5)',
-        delay: '0s',
-    },
-    {
-        top: '52%',
-        right: '28%',
-        size: 6,
-        color: 'rgba(72,149,239,0.4)',
-        delay: '2s',
-    },
-    {
-        bottom: '32%',
-        left: '38%',
-        size: 4,
-        color: 'rgba(160,120,245,0.35)',
-        delay: '1s',
-    },
-    {
-        top: '65%',
-        right: '42%',
-        size: 4,
-        color: 'rgba(72,149,239,0.3)',
-        delay: '3s',
-    },
-] as const;
-
 const DesktopHero: React.FC<Props> = React.memo(({ isLoaded }) => (
     <div className="hidden md:flex relative min-h-screen items-center justify-center overflow-hidden">
-        {/* ── Ambient base ── */}
-        <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-        >
+        {/* ═══ DARK SUN — core glow ═══ */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            {/* Outer halo */}
             <div
-                className="absolute inset-0 opacity-20"
+                className="absolute"
                 style={{
-                    background:
-                        'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(var(--brand-violet-rgb),0.06) 0%, transparent 70%)',
+                    top: '50%',
+                    left: '50%',
+                    width: 'clamp(700px, 75vw, 1200px)',
+                    height: 'clamp(700px, 75vw, 1200px)',
+                    marginLeft: 'clamp(-600px, -37.5vw, -350px)',
+                    marginTop: 'clamp(-600px, -37.5vw, -350px)',
+                    background: `
+                        radial-gradient(circle at center,
+                            rgba(160,120,245,0.22) 0%,
+                            rgba(130,105,230,0.12) 20%,
+                            rgba(72,149,239,0.06) 40%,
+                            transparent 65%)
+                    `,
+                    animation: 'sun-pulse 10s ease-in-out infinite',
+                    willChange: 'transform, opacity',
+                }}
+            />
+            {/* Inner bright core */}
+            <div
+                className="absolute"
+                style={{
+                    top: '50%',
+                    left: '50%',
+                    width: 'clamp(200px, 22vw, 350px)',
+                    height: 'clamp(200px, 22vw, 350px)',
+                    marginLeft: 'clamp(-175px, -11vw, -100px)',
+                    marginTop: 'clamp(-175px, -11vw, -100px)',
+                    background: `
+                        radial-gradient(circle at center,
+                            rgba(200,180,255,0.35) 0%,
+                            rgba(160,120,245,0.20) 30%,
+                            rgba(120,100,220,0.08) 55%,
+                            transparent 80%)
+                    `,
+                    animation: 'sun-pulse 10s ease-in-out infinite',
+                    willChange: 'transform, opacity',
                 }}
             />
         </div>
 
-        {/* ── Cursor glow global now ── */}
+        {/* ═══ SUN RAYS — slowly rotating conic beams ═══ */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div
+                className="absolute"
+                style={{
+                    top: '50%',
+                    left: '50%',
+                    width: 'clamp(800px, 80vw, 1400px)',
+                    height: 'clamp(800px, 80vw, 1400px)',
+                    background: `conic-gradient(
+                        from 0deg,
+                        transparent 0deg,
+                        rgba(160,120,245,0.06) 5deg,
+                        transparent 15deg,
+                        transparent 45deg,
+                        rgba(72,149,239,0.05) 50deg,
+                        transparent 60deg,
+                        transparent 90deg,
+                        rgba(160,120,245,0.05) 95deg,
+                        transparent 105deg,
+                        transparent 135deg,
+                        rgba(72,149,239,0.04) 140deg,
+                        transparent 150deg,
+                        transparent 180deg,
+                        rgba(160,120,245,0.06) 185deg,
+                        transparent 195deg,
+                        transparent 225deg,
+                        rgba(72,149,239,0.05) 230deg,
+                        transparent 240deg,
+                        transparent 270deg,
+                        rgba(160,120,245,0.04) 275deg,
+                        transparent 285deg,
+                        transparent 315deg,
+                        rgba(72,149,239,0.05) 320deg,
+                        transparent 330deg,
+                        transparent 360deg
+                    )`,
+                    maskImage: 'radial-gradient(circle, transparent 8%, black 15%, black 45%, transparent 70%)',
+                    WebkitMaskImage: 'radial-gradient(circle, transparent 8%, black 15%, black 45%, transparent 70%)',
+                    animation: 'sun-rays-spin 120s linear infinite',
+                    willChange: 'transform',
+                }}
+            />
+        </div>
 
-        {/* ── Orbital orbs ── */}
-        <div
-            className="absolute inset-0 pointer-events-none overflow-hidden"
-            aria-hidden="true"
-        >
+        {/* ═══ ORBITING FLARES — desynchronized glow ═══ */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
             <div className="absolute top-1/2 left-1/2 w-0 h-0">
-                {[
-                    {
-                        anim: 'orb-left',
-                        dur: '38s',
-                        w: 'clamp(300px,34vw,470px)',
-                        col: 'rgba(160,120,245,',
-                    },
-                    {
-                        anim: 'orb-right',
-                        dur: '38s',
-                        w: 'clamp(250px,28vw,400px)',
-                        col: 'rgba(72,149,239,',
-                    },
-                ].map((o, i) => (
-                    <div
-                        key={i}
-                        className="absolute rounded-full"
-                        style={{
-                            width: o.w,
-                            height: o.w,
-                            background: `radial-gradient(circle,${o.col}0.20) 0%,${o.col}0.06) 40%,transparent 65%)`,
-                            filter: 'blur(52px)',
-                            animation: `${o.anim} ${o.dur} linear infinite`,
-                            willChange: 'transform',
-                        }}
-                    />
-                ))}
+                {/* Violet flare — 6s glow cycle */}
+                <div
+                    className="absolute rounded-full"
+                    style={{
+                        width: 'clamp(220px, 28vw, 420px)',
+                        height: 'clamp(220px, 28vw, 420px)',
+                        background: 'radial-gradient(circle, rgba(160,120,245,0.30) 0%, rgba(160,120,245,0.08) 35%, transparent 65%)',
+                        animation: 'orb-orbit-a 35s linear infinite, orb-glow-a 6s ease-in-out infinite',
+                        willChange: 'transform, opacity',
+                    }}
+                />
+                {/* Blue flare — 9s glow cycle (different rhythm) */}
+                <div
+                    className="absolute rounded-full"
+                    style={{
+                        width: 'clamp(200px, 24vw, 380px)',
+                        height: 'clamp(200px, 24vw, 380px)',
+                        background: 'radial-gradient(circle, rgba(72,149,239,0.28) 0%, rgba(72,149,239,0.07) 35%, transparent 65%)',
+                        animation: 'orb-orbit-b 35s linear infinite, orb-glow-b 9s ease-in-out infinite',
+                        willChange: 'transform, opacity',
+                    }}
+                />
             </div>
         </div>
 
-        {/* ── Grid ── */}
-        <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-        >
+        {/* ═══ Subtle grid ═══ */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <div
-                className="absolute inset-0"
+                className="absolute inset-0 opacity-[0.02]"
                 style={{
-                    opacity: 0.025,
                     backgroundImage:
-                        'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)',
-                    backgroundSize: '70px 70px',
-                    maskImage:
-                        'radial-gradient(ellipse 70% 55% at 50% 50%,black 20%,transparent 75%)',
-                    WebkitMaskImage:
-                        'radial-gradient(ellipse 70% 55% at 50% 50%,black 20%,transparent 75%)',
+                        'linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)',
+                    backgroundSize: '80px 80px',
                 }}
             />
         </div>
-
-        {/* ── Grid glows ── */}
-        <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-        >
-            {GRID_DOTS.map((d, i) => (
-                <div
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{
-                        top: (d as any).top,
-                        left: (d as any).left,
-                        right: (d as any).right,
-                        bottom: (d as any).bottom,
-                        width: d.size,
-                        height: d.size,
-                        backgroundColor: d.color,
-                        animation: `glow-breathe 6s ease-in-out infinite ${d.delay}`,
-                        willChange: 'opacity, transform',
-                    }}
-                />
-            ))}
-        </div>
-
-        {/* ── Floating shapes ── */}
-        <FloatingShapes shapes={HERO_SHAPES} />
-
-        {/* ── Noise ── */}
-        <div
-            className="absolute inset-0 opacity-[0.012] pointer-events-none mix-blend-overlay"
-            aria-hidden="true"
-            style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            }}
-        />
 
         {/* ── Content ── */}
         <div
@@ -192,10 +181,7 @@ const DesktopHero: React.FC<Props> = React.memo(({ isLoaded }) => (
                     overflow: 'visible',
                 }}
             >
-                <span
-                    className="block"
-                    style={{ animation: 'title-glow 6s ease-in-out infinite' }}
-                >
+                <span className="block">
                     Transform Ideas
                 </span>
                 <span

@@ -69,7 +69,7 @@ const CursorGlow: React.FC = React.memo(() => {
         >
             <div
                 ref={glowRef}
-                className="absolute top-0 left-0 pointer-events-none rounded-full mix-blend-screen"
+                className="absolute top-0 left-0 pointer-events-none rounded-full"
                 style={{
                     width: '600px',
                     height: '600px',
@@ -84,21 +84,6 @@ const CursorGlow: React.FC = React.memo(() => {
                     opacity: 0,
                     transition: 'opacity 0.4s ease-out',
                     willChange: 'transform, opacity',
-                }}
-            />
-            {/* Core intense glow */}
-            <div
-                className="absolute top-1/2 left-1/2 pointer-events-none rounded-full mix-blend-screen"
-                style={{
-                    width: '200px',
-                    height: '200px',
-                    marginLeft: '-100px',
-                    marginTop: '-100px',
-                    background: `
-                        radial-gradient(circle at center, 
-                            rgba(160, 120, 245, 0.15) 0%, 
-                            transparent 70%)
-                    `,
                 }}
             />
         </div>

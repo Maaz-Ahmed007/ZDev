@@ -20,7 +20,74 @@ const StorePreview: React.FC = () => {
 
     return (
         <section id="store-preview" className="relative w-full py-32 px-6 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+            {/* ═══ STORE PREVIEW BACKGROUND ═══ */}
+            <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+                {/* Top spotlight — brighter */}
+                <div
+                    className="absolute"
+                    style={{
+                        top: '-15%',
+                        left: '50%',
+                        width: '1000px',
+                        height: '700px',
+                        marginLeft: '-500px',
+                        background: 'radial-gradient(ellipse 100% 80% at 50% 0%, rgba(160,120,245,0.16) 0%, rgba(72,149,239,0.08) 35%, transparent 65%)',
+                    }}
+                />
+                {/* Animated cross-grid */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage:
+                            'linear-gradient(rgba(160,120,245,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(72,149,239,0.04) 1px, transparent 1px)',
+                        backgroundSize: '60px 60px',
+                        animation: 'store-line-glow 8s ease-in-out infinite',
+                    }}
+                />
+                {/* Drifting violet mesh light — left */}
+                <div
+                    className="absolute"
+                    style={{
+                        top: '25%',
+                        left: '-3%',
+                        width: '500px',
+                        height: '500px',
+                        background: 'radial-gradient(circle, rgba(160,120,245,0.12) 0%, rgba(160,120,245,0.03) 40%, transparent 65%)',
+                        animation: 'store-drift-a 15s ease-in-out infinite',
+                        willChange: 'transform',
+                    }}
+                />
+                {/* Drifting blue mesh light — right */}
+                <div
+                    className="absolute"
+                    style={{
+                        top: '45%',
+                        right: '-5%',
+                        width: '450px',
+                        height: '450px',
+                        background: 'radial-gradient(circle, rgba(72,149,239,0.10) 0%, rgba(72,149,239,0.03) 40%, transparent 65%)',
+                        animation: 'store-drift-b 18s ease-in-out infinite',
+                        willChange: 'transform',
+                    }}
+                />
+                {/* Bottom gradient fade into next section */}
+                <div
+                    className="absolute bottom-0 left-0 right-0 h-32"
+                    style={{
+                        background: 'linear-gradient(to top, var(--bg-primary), transparent)',
+                    }}
+                />
+                {/* Top separator line */}
+                <div
+                    className="absolute top-0 left-[10%] right-[10%] h-px"
+                    style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(160,120,245,0.15), rgba(72,149,239,0.15), transparent)',
+                    }}
+                />
+            </div>
+
+
+            <div className="max-w-7xl mx-auto relative z-10">
                 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
